@@ -7,6 +7,8 @@ public class AddressBookMain {
 
 		add.addContact();
 		System.out.println(add.display());
+		add.editContact();
+		System.out.println(add.display());
 
 	}
 

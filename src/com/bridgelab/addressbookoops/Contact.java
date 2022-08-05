@@ -1,11 +1,12 @@
 package com.bridgelab.addressbookoops;
 
-public class Contacts {
-	public Contacts() {
+public class Contact {
+
+	public Contact() {
 
 	}
 
-	public Contacts(String firstName, String lastName, String address, String city, String state, String zip,
+	public Contact(String firstName, String lastName, String address, String city, String state, String zip,
 			String phoneNumber, String email) {
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -89,6 +90,19 @@ public class Contacts {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		boolean result = false;
+		if(obj == this) {
+            return true;
+        }
+        Contact contact = (Contact)obj; //casted the above object inside Contact
+        if (contact.firstName.equals(this.firstName) && contact.lastName.equals(this.lastName)){
+            return true;
+        }
+        return  result;
+	}
 
 	@Override
 	public String toString() {
@@ -96,6 +110,5 @@ public class Contacts {
 				+ '\'' + ",city='" + city + '\'' + ",state='" + state + '\'' + ",zip='" + zip + '\'' + ",phoneNumber='"
 				+ phoneNumber + '\'' + ",email='" + email + '\'' + '}';
 	}
-
-
+	
 }

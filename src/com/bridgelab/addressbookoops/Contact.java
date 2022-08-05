@@ -90,18 +90,18 @@ public class Contact {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
+
 	@Override
 	public boolean equals(Object obj) {
 		boolean result = false;
-		if(obj == this) {
-            return true;
-        }
-        Contact contact = (Contact)obj; //casted the above object inside Contact
-        if (contact.firstName.equals(this.firstName) && contact.lastName.equals(this.lastName)){
-            return true;
-        }
-        return  result;
+		if (obj == this) {
+			return true;
+		}
+		Contact contact = (Contact) obj; // casted the above object inside Contact
+		if (contact.firstName.equals(this.firstName) && contact.lastName.equals(this.lastName)) {
+			return true;
+		}
+		return result;
 	}
 
 	@Override
@@ -110,5 +110,5 @@ public class Contact {
 				+ '\'' + ",city='" + city + '\'' + ",state='" + state + '\'' + ",zip='" + zip + '\'' + ",phoneNumber='"
 				+ phoneNumber + '\'' + ",email='" + email + '\'' + '}';
 	}
-	
+
 }

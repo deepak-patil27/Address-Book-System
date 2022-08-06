@@ -1,7 +1,6 @@
 package com.bridgelab.addressbookoops;
 
 public class Contact {
-
 	public Contact() {
 
 	}
@@ -13,17 +12,6 @@ public class Contact {
 		this.address = address;
 		this.city = city;
 		this.state = state;
-		this.zip = zip;
-		this.phoneNumber = phoneNumber;
-		this.email = email;
-	}
-
-	public Contact(String firstName, String lastName, String address, String cityName, String zipcode,
-			String phoneNumber, String emailID) {
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.address = address;
-		this.city = city;
 		this.zip = zip;
 		this.phoneNumber = phoneNumber;
 		this.email = email;
@@ -102,15 +90,19 @@ public class Contact {
 		this.email = email;
 	}
 
+	// Overriding equals method to compare Contact objects
 	@Override
 	public boolean equals(Object obj) {
 		boolean result = false;
+
+		// If the object is compared with itself then returns true
 		if (obj == this) {
 			return true;
 		}
-		Contact contact = (Contact) obj; // casted the above object inside Contact
+		Contact contact = (Contact) obj; // typecast obj to Contact so that we can compare data members
+		// Compare data members and return accordingly
 		if (contact.firstName.equals(this.firstName) && contact.lastName.equals(this.lastName)) {
-			return true;
+			result = true;
 		}
 		return result;
 	}

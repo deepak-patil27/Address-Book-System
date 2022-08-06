@@ -51,8 +51,8 @@ public class AddressBook {
 			if (firstname.equalsIgnoreCase(editName)) {
 				do {
 					System.out.println("1. Edit First name" + "\n" + "2. Edit Last name" + "\n" + "3. Edit Address "
-							+ "\n" + "4. Edit City " + "\n" + "5. Edit State" + "\n" + "6. Edit Zipcode " + "\n"
-							+ "7. Edit Phone Number" + "\n" + "8. Edit Email" + "\n" + "0. EXIT" + "\n"
+							+ "\n"+ "4. Edit State" + "\n" + "5. Edit Zipcode " + "\n"
+							+ "6. Edit Phone Number" + "\n" + "7. Edit Email" + "\n" + "0. EXIT" + "\n"
 							+ "Enter your choice :");
 					choice = scanner.nextInt();
 					switch (choice) {
@@ -77,28 +77,28 @@ public class AddressBook {
 						System.out.println(contact);
 						break;
 
-					case 5:
+					case 4:
 						System.out.println("Enter new state:");
 						String newState = scanner.next();
 						contact.setState(newState);
 						System.out.println(contact);
 						break;
 
-					case 6:
+					case 5:
 						System.out.println("Enter new zipcode:");
 						String newZipcode = scanner.next();
 						contact.setZip(newZipcode);
 						System.out.println(contact);
 						break;
 
-					case 7:
+					case 6:
 						System.out.println("Enter new phone number :");
 						String newPhone = scanner.next();
 						contact.setPhoneNumber(newPhone);
 						System.out.println(contact);
 						break;
 
-					case 8:
+					case 7:
 						System.out.println("Enter new email id:");
 						String newEmail = scanner.next();
 						contact.setEmail(newEmail);

@@ -1,0 +1,1 @@
+Deepak: Contacts{fName='deepak', lName='patil', address='old ausa road laatur', city='latur', state='maharashtra', zip=413512, phone=7709735143, email='deepakplatur@gmail.com'}

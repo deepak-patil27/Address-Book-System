@@ -1,53 +1,33 @@
 package com.bridgelab.addressbookoops;
 
 public class Contact {
-	public Contact() {
+	private String firstName;
+	private String lastName;
+	private String address;
+	private String city;
+	private String state;
+	private Long zip;
+	private Long phone;
+	private String email;
 
-	}
-
-	public Contact(String firstName, String lastName, String address, String city, String state, String zip,
-			String phoneNumber, String email) {
+	public Contact(String firstName, String lastName, String address, String city, String state, Long zip, Long phone,
+			String email) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.address = address;
 		this.city = city;
 		this.state = state;
 		this.zip = zip;
-		this.phoneNumber = phoneNumber;
+		this.phone = phone;
 		this.email = email;
 	}
 
-	private String firstName;
-	private String lastName;
-	private String address;
-	private String city;
-	private String state;
-	private String zip;
-	private String phoneNumber;
-	private String email;
-
-	public String getFirstName() {
+	public String getfirstName() {
 		return firstName;
 	}
 
-	public void setFirstName(String firstName) {
+	public void setfirstName(String firstName) {
 		this.firstName = firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-
-	public String getAddress() {
-		return address;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
 	}
 
 	public String getCity() {
@@ -66,52 +46,68 @@ public class Contact {
 		this.state = state;
 	}
 
-	public String getZip() {
+	public String getlastName() {
+		return lastName;
+	}
+
+	public void setlastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public Long getZip() {
 		return zip;
 	}
 
-	public void setZip(String zip) {
-		this.zip = zip;
-	}
-
-	public String getPhoneNumber() {
-		return phoneNumber;
-	}
-
-	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
+	public Long getPhone() {
+		return phone;
 	}
 
 	public String getEmail() {
 		return email;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	// Overriding equals method to compare Contact objects
 	@Override
 	public boolean equals(Object obj) {
-		boolean result = false;
-
-		// If the object is compared with itself then returns true
-		if (obj == this) {
+		if (this == obj)
 			return true;
-		}
-		Contact contact = (Contact) obj; // typecast obj to Contact so that we can compare data members
-		// Compare data members and return accordingly
-		if (contact.firstName.equals(this.firstName) && contact.lastName.equals(this.lastName)) {
-			result = true;
-		}
-		return result;
+		if (!(obj instanceof Contact))
+			return false;
+
+		Contact other = (Contact) obj;
+		if (!(firstName.equalsIgnoreCase(other.getfirstName())))
+			return false;
+		if (!(lastName.equalsIgnoreCase(other.getlastName())))
+			return false;
+		if (!(address.equalsIgnoreCase(other.getAddress())))
+			return false;
+		if (!(city.equalsIgnoreCase(other.getCity())))
+			return false;
+		if (!state.equalsIgnoreCase(other.getState()))
+			return false;
+		if (!zip.equals(other.getZip()))
+			return false;
+		if (!(phone.equals(other.getPhone())))
+			return false;
+		return email.equals(other.getEmail());
 	}
 
 	@Override
 	public String toString() {
-		return "Contact{" + ",firstName='" + firstName + '\'' + ",lastName='" + lastName + '\'' + ",address='" + address
-				+ '\'' + ",city='" + city + '\'' + ",state='" + state + '\'' + ",zip='" + zip + '\'' + ",phoneNumber='"
-				+ phoneNumber + '\'' + ",email='" + email + '\'' + '}';
+		return "Contacts{" +
+				"firstName='" + firstName + '\'' +
+				", lastName='" + lastName + '\'' +
+				", address='" + address + '\'' +
+				", city='" + city + '\'' +
+				", state='" + state + '\'' +
+				", zip=" + zip +
+				", phone=" + phone +
+				", email='" + email + '\'' +
+				'}';
 	}
+
 
 }

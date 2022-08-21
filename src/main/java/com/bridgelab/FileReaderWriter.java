@@ -1,5 +1,6 @@
 package com.bridgelab;
 
+import com.google.gson.Gson;
 import com.opencsv.CSVWriter;
 import java.io.*;
 import java.util.ArrayList;
@@ -16,7 +17,7 @@ public class FileReaderWriter {
 			System.out.println(string);
 	}
 
-	static void readCSVFile(File file) throws IOException {
+	static void readCSVJsonFile(File file) throws IOException {
 		Scanner scanner = new Scanner(file);
 		scanner.useDelimiter(",");
 		while (scanner.hasNext()) {
@@ -40,16 +41,25 @@ public class FileReaderWriter {
 		FileWriter fileWriter = new FileWriter(file);
 		CSVWriter csvWriter = new CSVWriter(fileWriter);
 		List<String[]> data = new ArrayList<>();
-		String[] heading = new String[] { "FIRST_NAME", "LAST_NAME", "ADDRESS", "CITY", "STATE", "ZIP", "PHONE_NUMBER",
-				"EMAIL" };
+		String[] heading = new String[]{"FIRST_NAME", "LAST_NAME", "ADDRESS", "CITY", "STATE", "ZIP", "PHONE_NUMBER", "EMAIL"};
 		csvWriter.writeNext(heading);
 		for (Contacts contacts : list) {
-			String[] contactData = new String[] { contacts.getFirstName(), contacts.getLastName(),
-					contacts.getAddress(), contacts.getCity(), contacts.getState(), contacts.getZip(),
-					contacts.getPhoneNumber(), contacts.getEmail() };
+			String[] contactData = new String[]{contacts.getFirstName(), contacts.getLastName(), contacts.getAddress(), contacts.getCity(), contacts.getState(), contacts.getZip(), contacts.getPhoneNumber(), contacts.getEmail()};
 			data.add(contactData);
 		}
 		csvWriter.writeAll(data);
+		fileWriter.close();
+	}
+
+	public static void writeJson(ArrayList<Contacts> arrayList, String addressBookName) throws IOException {
+		File file = new File(PATH + addressBookName + ".json");
+		FileWriter fileWriter = new FileWriter(file);
+		Gson gson = new Gson();
+		String data="";
+		for (Contacts contact : arrayList) {
+			data = data.concat(gson.toJson(contact)+"\n");
+		}
+		fileWriter.write(data);
 		fileWriter.close();
 	}
 

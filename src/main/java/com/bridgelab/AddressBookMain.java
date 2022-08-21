@@ -7,7 +7,7 @@ public class AddressBookMain {
 	static Scanner scr = new Scanner(System.in);
 	static AddressBook addressBook;
 	static HashMap<String, AddressBook> map = new HashMap<>();
-	public static ArrayList<String> addressBooks = new ArrayList<>();
+	public static ArrayList<String>  addressBooks = new ArrayList<>();
 	static String currentAddressBook;
 	static String addressBookName;
 
@@ -27,7 +27,8 @@ public class AddressBookMain {
 					6) To view contact in current addressBook
 					7) To write addressBook to Files
 					8) To Read addressBook from files
-					9) To exit""");
+					9) To print names of all addressBooks
+					10) To exit""");
 
 			int option = scr.nextInt();
 			switch (option) {
@@ -72,7 +73,7 @@ public class AddressBookMain {
 				break;
 			case 7:
 				try {
-					map.get(currentAddressBook).writeAddressBook(map.get(currentAddressBook).list, currentAddressBook);
+					map.get(currentAddressBook).writeAddressBook(map.get(currentAddressBook).list,currentAddressBook);
 				} catch (IOException e) {
 					System.out.println("Catch BLock");
 				}
@@ -83,14 +84,17 @@ public class AddressBookMain {
 				} catch (IOException e) {
 					System.out.println("Catch BLock");
 				}
+				break;
 			case 9:
+				System.out.println(addressBooks);
+				break;
+			case 10:
 				exit = true;
 				break;
 			default:
 				break;
 			}
 		}
-		System.out.println(addressBooks);
 	}
 
 	static void chooseAddressBook() {
@@ -126,5 +130,5 @@ public class AddressBookMain {
 			break;
 		}
 	}
-
+	
 }

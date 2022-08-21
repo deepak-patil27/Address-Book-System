@@ -1,0 +1,2 @@
+
+Contacts{firstName='deepak', lastName='patil', address='AdarshColony', city='Latur', state='Maharashtra', zip=413512, phoneNumber=9563287410, email='deepak@gmail.com'}

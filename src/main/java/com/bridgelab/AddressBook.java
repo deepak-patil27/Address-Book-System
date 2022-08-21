@@ -9,13 +9,13 @@ public class AddressBook {
 	ArrayList<Contacts> list = new ArrayList<>();
 	Scanner scanner = new Scanner(System.in);
 
-	void addContact() throws IOException {
+
+	void addContact(){
 		System.out.println("Enter the first name");
 		String firstName = scanner.next().toLowerCase();
 		System.out.println("Enter the last name");
 		String lastName = scanner.next().toLowerCase();
-		if (list.stream().anyMatch(x -> x.getFirstName().toLowerCase().equals(firstName)
-				&& x.getLastName().toLowerCase().equals(lastName))) {
+		if (list.stream().anyMatch(x -> x.getFirstName().toLowerCase().equals(firstName) && x.getLastName().toLowerCase().equals(lastName))) {
 			System.out.println("Contact already exist!!!");
 			return;
 		}
@@ -39,32 +39,40 @@ public class AddressBook {
 		list.add(contact);
 	}
 
-	void writeAddressBook(ArrayList<Contacts> arrayList, String addressBookName) throws IOException {
-		System.out.println("Enter\n 1) To write to txt file\n 2) To write to CSV file");
+
+	void writeAddressBook(ArrayList<Contacts> arrayList,String addressBookName) throws IOException {
+		System.out.println("Enter\n 1) To write to txt file\n 2) To write to CSV file\n 3) To write to Json File");
 		int option = scanner.nextInt();
-		switch (option) {
+		switch (option){
 		case 1:
 			FileReaderWriter.writeTxt(arrayList, addressBookName);
 			break;
 		case 2:
 			FileReaderWriter.writeCSV(arrayList, addressBookName);
 			break;
+		case 3:
+			FileReaderWriter.writeJson(arrayList, addressBookName);
+			break;
 		}
 
 	}
 
 	void readAddressBook(String addressBookName) throws IOException {
-		System.out.println("Select option \n1.read from text file \n2.read from csv file");
+		System.out.println("Enter\n 1) To Read from txt file\n 2) To Read from CSV file\n 3) To Read from Json File");
 		int option = scanner.nextInt();
 		switch (option) {
 		case 1:
-			FileReaderWriter.readTxtFile(new File(FileReaderWriter.PATH.concat(addressBookName + ".txt")));
+			FileReaderWriter.readTxtFile(new File(FileReaderWriter.PATH.concat(addressBookName+".txt")));
 			break;
 		case 2:
-			FileReaderWriter.readCSVFile(new File(FileReaderWriter.PATH.concat(addressBookName + ".csv")));
+			FileReaderWriter.readCSVJsonFile(new File(FileReaderWriter.PATH.concat( addressBookName +".csv")));
+			break;
+		case 3:
+			FileReaderWriter.readCSVJsonFile(new File(FileReaderWriter.PATH.concat( addressBookName +".json")));
 			break;
 		}
 	}
+
 
 	void editContact() {
 		if (list.isEmpty()) {
@@ -116,15 +124,16 @@ public class AddressBook {
 		}
 	}
 
-	void displayContact() throws IOException {
+
+	void displayContact(){
 		if (list.isEmpty()) {
 			System.out.println("No contacts in the addressBook");
 			return;
 		}
 		list.sort(Comparator.comparing(Contacts::getFirstName));
 		list.forEach(System.out::println);
-		// readData();
 	}
+
 
 	void deleteContact() {
 		if (list.isEmpty()) {
@@ -151,6 +160,7 @@ public class AddressBook {
 		}
 	}
 
+
 	void viewContacts() {
 		if (list.isEmpty()) {
 			System.out.println("No contacts to display");
@@ -172,8 +182,7 @@ public class AddressBook {
 				String city = scanner.next().toLowerCase();
 				Map<String, List<Contacts>> cityDictionary = new HashMap<>();
 				for (AddressBook addressBooks : AddressBookMain.map.values()) {
-					List<Contacts> contactsCityList = addressBooks.list.stream()
-							.filter(x -> x.getCity().toLowerCase().equals(city)).collect(Collectors.toList());
+					List<Contacts> contactsCityList = addressBooks.list.stream().filter(x -> x.getCity().toLowerCase().equals(city)).collect(Collectors.toList());
 					if (cityDictionary.containsKey(city)) {
 						cityDictionary.get(city).addAll(contactsCityList);
 					} else
@@ -189,8 +198,7 @@ public class AddressBook {
 				String state = scanner.next().toLowerCase();
 				Map<String, List<Contacts>> stateDictionary = new HashMap<>();
 				for (AddressBook addressBooks : AddressBookMain.map.values()) {
-					List<Contacts> contactsStateList = addressBooks.list.stream()
-							.filter(x -> x.getState().toLowerCase().equals(state)).collect(Collectors.toList());
+					List<Contacts> contactsStateList = addressBooks.list.stream().filter(x -> x.getState().toLowerCase().equals(state)).collect(Collectors.toList());
 					if (stateDictionary.containsKey(state)) {
 						stateDictionary.get(state).addAll(contactsStateList);
 					} else
@@ -240,7 +248,8 @@ public class AddressBook {
 
 	@Override
 	public String toString() {
-		return list + "}\n";
+		return list +
+				"}\n";
 	}
 
 }
